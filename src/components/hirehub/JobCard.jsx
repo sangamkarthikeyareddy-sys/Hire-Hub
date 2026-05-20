@@ -4,18 +4,18 @@ import { MapPin, Heart, Clock, Zap, Database, Briefcase, Building2 } from "lucid
 import { useBookmarks } from "../../context/BookmarkContext";
 
 const typeColors = {
-    full_time: "bg-green-100 text-green-800",
-    contract: "bg-blue-100 text-blue-800",
-    part_time: "bg-yellow-100 text-yellow-800",
-    freelance: "bg-purple-100 text-purple-800",
-    internship: "bg-pink-100 text-pink-800",
+    full_time: "bg-emerald-500/15 text-emerald-400",
+    contract: "bg-blue-500/15 text-blue-400",
+    part_time: "bg-amber-500/15 text-amber-400",
+    freelance: "bg-violet-500/15 text-violet-400",
+    internship: "bg-pink-500/15 text-pink-400",
 };
 
 const SOURCE_STYLE = {
-    JSearch:   { icon: Zap,       color: "text-amber-600 bg-amber-50" },
-    Adzuna:    { icon: Database,   color: "text-violet-600 bg-violet-50" },
-    Arbeitnow: { icon: Briefcase,  color: "text-emerald-600 bg-emerald-50" },
-    TheMuse:   { icon: Building2,  color: "text-pink-600 bg-pink-50" },
+    JSearch:   { icon: Zap,       color: "text-amber-400 bg-amber-500/15" },
+    Adzuna:    { icon: Database,   color: "text-violet-400 bg-violet-500/15" },
+    Arbeitnow: { icon: Briefcase,  color: "text-emerald-400 bg-emerald-500/15" },
+    TheMuse:   { icon: Building2,  color: "text-pink-400 bg-pink-500/15" },
 };
 
 function formatJobType(type) {
@@ -67,8 +67,8 @@ function getColor(name) {
 export default function JobCard({ job, showRemove = false }) {
     const { isBookmarked, addBookmark, removeBookmark } = useBookmarks();
     const bookmarked = isBookmarked(job.id);
-    const badge = typeColors[job.job_type] || "bg-gray-100 text-gray-700";
-    const src = SOURCE_STYLE[job.source] || SOURCE_STYLE.Remotive;
+    const badge = typeColors[job.job_type] || "bg-slate-500/15 text-slate-400";
+    const src = SOURCE_STYLE[job.source] || SOURCE_STYLE.Arbeitnow;
     const SrcIcon = src.icon;
 
     const handleBookmark = (e) => {
@@ -89,14 +89,16 @@ export default function JobCard({ job, showRemove = false }) {
 
     return (
         <Link to={`/jobs/${job.id}`} className="block group">
-            <div className="bg-white border border-gray-100 rounded-xl p-6 hover:shadow-md hover:-translate-y-1 transition-all duration-200 h-full flex flex-col">
+            <div className="rounded-xl p-6 hover:-translate-y-1 transition-all duration-200 h-full flex flex-col"
+                style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", backdropFilter: "blur(12px)" }}>
                 <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center gap-3">
                         {job.company_logo ? (
                             <img
                                 src={job.company_logo}
                                 alt={job.company_name}
-                                className="w-12 h-12 rounded-lg object-contain bg-gray-50 p-1"
+                                className="w-12 h-12 rounded-lg object-contain p-1"
+                                style={{ background: "rgba(255,255,255,0.06)" }}
                                 onError={(e) => {
                                     const image = e.currentTarget;
                                     const fallback = image.nextElementSibling;
@@ -115,27 +117,31 @@ export default function JobCard({ job, showRemove = false }) {
                             {getInitials(job.company_name)}
                         </div>
                         <div className="min-w-0">
-                            <h3 className="font-semibold text-gray-900 text-sm leading-tight line-clamp-2 group-hover:text-blue-600 transition-colors">
+                            <h3 className="font-semibold text-sm leading-tight line-clamp-2 transition-colors"
+                                style={{ color: "#e2e8f0" }}>
                                 {job.title}
                             </h3>
-                            <p className="text-gray-500 text-sm mt-0.5">{job.company_name}</p>
+                            <p className="text-sm mt-0.5" style={{ color: "#64748b" }}>{job.company_name}</p>
                         </div>
                     </div>
                     <button
                         onClick={handleBookmark}
-                        className="flex-shrink-0 ml-2 p-1.5 rounded-full hover:bg-gray-100 transition-colors"
+                        className="flex-shrink-0 ml-2 p-1.5 rounded-full transition-colors"
+                        style={{ color: bookmarked ? undefined : "#475569" }}
+                        onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.06)"}
+                        onMouseLeave={e => e.currentTarget.style.background = "transparent"}
                     >
                         <Heart
                             className={`w-5 h-5 transition-colors ${bookmarked
-                                    ? "fill-blue-500 text-blue-500"
-                                    : "text-gray-300 group-hover:text-gray-400"
+                                    ? "fill-blue-400 text-blue-400"
+                                    : ""
                                 }`}
                         />
                     </button>
                 </div>
 
                 <div className="mt-auto flex flex-col gap-3">
-                    <div className="flex items-center gap-1.5 text-gray-400 text-sm">
+                    <div className="flex items-center gap-1.5 text-sm" style={{ color: "#64748b" }}>
                         <MapPin className="w-3.5 h-3.5 flex-shrink-0" />
                         <span className="truncate">
                             {job.candidate_required_location || "Remote"}
@@ -144,7 +150,7 @@ export default function JobCard({ job, showRemove = false }) {
 
                     {/* Salary line */}
                     {job.salary && (
-                        <p className="text-xs font-medium text-emerald-600 truncate">
+                        <p className="text-xs font-medium text-emerald-400 truncate">
                             {job.salary}
                         </p>
                     )}
@@ -164,7 +170,7 @@ export default function JobCard({ job, showRemove = false }) {
                                 </span>
                             )}
                         </div>
-                        <span className="flex items-center gap-1 text-xs text-gray-400">
+                        <span className="flex items-center gap-1 text-xs" style={{ color: "#475569" }}>
                             <Clock className="w-3 h-3" />
                             {daysAgo(job.publication_date)}
                         </span>
@@ -174,7 +180,8 @@ export default function JobCard({ job, showRemove = false }) {
                 {showRemove && (
                     <button
                         onClick={handleRemove}
-                        className="mt-3 w-full py-2 text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors"
+                        className="mt-3 w-full py-2 text-sm font-medium rounded-lg transition-colors"
+                        style={{ background: "rgba(239,68,68,0.1)", color: "#f87171" }}
                     >
                         Remove
                     </button>

@@ -200,16 +200,16 @@ function StatsSection() {
                     const counter = useCounter(stat.value);
                     return (
                         <div key={stat.label} ref={counter.ref}
-                            className="rounded-2xl p-6 text-center backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-                            style={{ background: "rgba(255,255,255,0.95)", border: "1px solid rgba(0,0,0,0.05)", boxShadow: "0 4px 30px rgba(0,0,0,0.08)" }}>
+                            className="rounded-2xl p-6 text-center backdrop-blur-xl transition-all duration-300 hover:-translate-y-1"
+                            style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)", boxShadow: "0 4px 30px rgba(0,0,0,0.2)" }}>
                             <div className="w-12 h-12 mx-auto mb-3 rounded-xl flex items-center justify-center"
-                                style={{ background: "linear-gradient(135deg, #eff6ff, #e0e7ff)" }}>
-                                <stat.icon className="w-5 h-5 text-blue-600" />
+                                style={{ background: "rgba(99,102,241,0.15)" }}>
+                                <stat.icon className="w-5 h-5 text-blue-400" />
                             </div>
-                            <p className="text-3xl font-extrabold text-gray-900">
+                            <p className="text-3xl font-extrabold text-white">
                                 {counter.count.toLocaleString()}{stat.suffix}
                             </p>
-                            <p className="text-sm text-gray-500 mt-1 font-medium">{stat.label}</p>
+                            <p className="text-sm mt-1 font-medium" style={{ color: "#64748b" }}>{stat.label}</p>
                         </div>
                     );
                 })}
@@ -224,10 +224,11 @@ function HowItWorks() {
     return (
         <section className="max-w-7xl mx-auto px-4 py-24">
             <div className="text-center mb-16">
-                <span className="inline-block text-sm font-semibold text-blue-600 bg-blue-50 rounded-full px-4 py-1.5 mb-4">
+                <span className="inline-block text-sm font-semibold rounded-full px-4 py-1.5 mb-4"
+                    style={{ background: "rgba(59,130,246,0.12)", color: "#60a5fa" }}>
                     How It Works
                 </span>
-                <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">
+                <h2 className="text-3xl md:text-4xl font-extrabold text-white">
                     Land your dream job in <span className="text-transparent bg-clip-text" style={{ backgroundImage: "linear-gradient(135deg, #3b82f6, #8b5cf6)" }}>3 simple steps</span>
                 </h2>
             </div>
@@ -235,18 +236,19 @@ function HowItWorks() {
                 {STEPS.map((s, i) => (
                     <div key={s.step} className="relative group">
                         {i < STEPS.length - 1 && (
-                            <div className="hidden md:block absolute top-16 left-[60%] w-[80%] border-t-2 border-dashed border-gray-200" />
+                            <div className="hidden md:block absolute top-16 left-[60%] w-[80%] border-t-2 border-dashed" style={{ borderColor: "rgba(255,255,255,0.08)" }} />
                         )}
-                        <div className="relative bg-white rounded-2xl p-8 border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                        <div className="relative rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300"
+                            style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
                             <div className="flex items-center gap-4 mb-5">
                                 <div className="w-14 h-14 rounded-2xl flex items-center justify-center"
                                     style={{ background: "linear-gradient(135deg, #3b82f6, #6366f1)" }}>
                                     <s.icon className="w-6 h-6 text-white" />
                                 </div>
-                                <span className="text-5xl font-black" style={{ color: "#e2e8f0" }}>{s.step}</span>
+                                <span className="text-5xl font-black" style={{ color: "rgba(255,255,255,0.06)" }}>{s.step}</span>
                             </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">{s.title}</h3>
-                            <p className="text-gray-500 leading-relaxed">{s.desc}</p>
+                            <h3 className="text-xl font-bold text-white mb-2">{s.title}</h3>
+                            <p className="leading-relaxed" style={{ color: "#64748b" }}>{s.desc}</p>
                         </div>
                     </div>
                 ))}
@@ -274,27 +276,29 @@ function CategoriesSection() {
         }
     };
     return (
-        <section style={{ background: "#f8fafc" }} className="py-24">
+        <section className="py-24" style={{ background: "rgba(255,255,255,0.02)" }}>
             <div className="max-w-7xl mx-auto px-4">
                 <div className="text-center mb-14">
-                    <span className="inline-block text-sm font-semibold text-emerald-600 bg-emerald-50 rounded-full px-4 py-1.5 mb-4">
+                    <span className="inline-block text-sm font-semibold rounded-full px-4 py-1.5 mb-4"
+                        style={{ background: "rgba(16,185,129,0.12)", color: "#34d399" }}>
                         Explore
                     </span>
-                    <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">
+                    <h2 className="text-3xl md:text-4xl font-extrabold text-white">
                         Browse by <span className="text-transparent bg-clip-text" style={{ backgroundImage: "linear-gradient(135deg, #10b981, #06b6d4)" }}>Category</span>
                     </h2>
-                    <p className="mt-3 text-gray-500 max-w-lg mx-auto">Find the perfect role in your field — from engineering to design and beyond</p>
+                    <p className="mt-3 max-w-lg mx-auto" style={{ color: "#64748b" }}>Find the perfect role in your field — from engineering to design and beyond</p>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                     {CATEGORIES.map((cat) => (
                         <button key={cat.label} onClick={() => handleClick(cat.label)}
-                            className="group relative bg-white rounded-2xl p-6 text-left border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 overflow-hidden">
+                            className="group relative rounded-2xl p-6 text-left overflow-hidden hover:-translate-y-2 transition-all duration-300"
+                            style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
                             <div className={`absolute inset-0 bg-gradient-to-br ${cat.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                             <div className="relative">
                                 <div className="text-3xl mb-3">{cat.icon}</div>
-                                <p className="font-bold text-gray-900 group-hover:text-white transition-colors text-lg">{cat.label}</p>
-                                <p className="text-sm text-gray-400 group-hover:text-white/80 transition-colors mt-1">{cat.count} jobs</p>
-                                <ArrowUpRight className="w-4 h-4 mt-3 text-gray-300 group-hover:text-white transition-colors" />
+                                <p className="font-bold text-white transition-colors text-lg">{cat.label}</p>
+                                <p className="text-sm transition-colors mt-1" style={{ color: "#64748b" }}>{cat.count} jobs</p>
+                                <ArrowUpRight className="w-4 h-4 mt-3 transition-colors" style={{ color: "#475569" }} />
                             </div>
                         </button>
                     ))}
@@ -309,21 +313,23 @@ function FeaturesSection() {
     return (
         <section className="max-w-7xl mx-auto px-4 py-24">
             <div className="text-center mb-14">
-                <span className="inline-block text-sm font-semibold text-violet-600 bg-violet-50 rounded-full px-4 py-1.5 mb-4">
+                <span className="inline-block text-sm font-semibold rounded-full px-4 py-1.5 mb-4"
+                    style={{ background: "rgba(139,92,246,0.12)", color: "#a78bfa" }}>
                     Why HireHub
                 </span>
-                <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">
+                <h2 className="text-3xl md:text-4xl font-extrabold text-white">
                     Everything you need to <span className="text-transparent bg-clip-text" style={{ backgroundImage: "linear-gradient(135deg, #8b5cf6, #ec4899)" }}>land your next role</span>
                 </h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {FEATURES.map((f) => (
-                    <div key={f.title} className="group bg-white border border-gray-100 rounded-2xl p-7 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                    <div key={f.title} className="group rounded-2xl p-7 hover:-translate-y-2 transition-all duration-300"
+                        style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
                         <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${f.gradient} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300`}>
                             <f.icon className="w-5 h-5 text-white" />
                         </div>
-                        <h3 className="font-bold text-gray-900 text-lg mb-2">{f.title}</h3>
-                        <p className="text-gray-500 leading-relaxed">{f.desc}</p>
+                        <h3 className="font-bold text-white text-lg mb-2">{f.title}</h3>
+                        <p className="leading-relaxed" style={{ color: "#64748b" }}>{f.desc}</p>
                     </div>
                 ))}
             </div>
@@ -334,32 +340,34 @@ function FeaturesSection() {
 /* ─── Testimonials ───────────────────────────────────────── */
 function TestimonialsSection() {
     return (
-        <section className="py-24" style={{ background: "linear-gradient(180deg, #f8fafc 0%, #eef2ff 50%, #f8fafc 100%)" }}>
+        <section className="py-24" style={{ background: "rgba(255,255,255,0.02)" }}>
             <div className="max-w-7xl mx-auto px-4">
                 <div className="text-center mb-14">
-                    <span className="inline-block text-sm font-semibold text-amber-600 bg-amber-50 rounded-full px-4 py-1.5 mb-4">
+                    <span className="inline-block text-sm font-semibold rounded-full px-4 py-1.5 mb-4"
+                        style={{ background: "rgba(245,158,11,0.12)", color: "#fbbf24" }}>
                         Testimonials
                     </span>
-                    <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">
+                    <h2 className="text-3xl md:text-4xl font-extrabold text-white">
                         Loved by <span className="text-transparent bg-clip-text" style={{ backgroundImage: "linear-gradient(135deg, #f59e0b, #ef4444)" }}>job seekers worldwide</span>
                     </h2>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
                     {TESTIMONIALS.map((t) => (
-                        <div key={t.name} className="bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                        <div key={t.name} className="rounded-2xl p-6 hover:-translate-y-1 transition-all duration-300"
+                            style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
                             <div className="flex gap-0.5 mb-4">
                                 {Array.from({ length: 5 }).map((_, i) => (
                                     <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
                                 ))}
                             </div>
-                            <p className="text-gray-600 text-sm leading-relaxed mb-6">"{t.text}"</p>
+                            <p className="text-sm leading-relaxed mb-6" style={{ color: "#94a3b8" }}>"{t.text}"</p>
                             <div className="flex items-center gap-3">
                                 <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${t.color} text-white flex items-center justify-center text-xs font-bold`}>
                                     {t.avatar}
                                 </div>
                                 <div>
-                                    <p className="font-semibold text-gray-900 text-sm">{t.name}</p>
-                                    <p className="text-xs text-gray-400">{t.role} @ {t.company}</p>
+                                    <p className="font-semibold text-white text-sm">{t.name}</p>
+                                    <p className="text-xs" style={{ color: "#475569" }}>{t.role} @ {t.company}</p>
                                 </div>
                             </div>
                         </div>
@@ -428,7 +436,7 @@ export default function Home() {
     const { isLoggedIn } = useHireHubAuth();
 
     return (
-        <div className="bg-white">
+        <div>
             <HeroSection />
             <StatsSection />
             <HowItWorks />

@@ -9,20 +9,21 @@ export default function BookmarkedJobs() {
 
     return (
         <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">
+            <h3 className="text-lg font-semibold text-white mb-4">
                 Saved Jobs ({bookmarks.length})
             </h3>
 
             {bookmarks.length === 0 ? (
-                <div className="bg-white border border-gray-100 rounded-xl p-12 text-center">
-                    <Bookmark className="w-10 h-10 text-gray-300 mx-auto mb-3" />
-                    <p className="text-gray-500 font-medium">No saved jobs yet</p>
-                    <p className="text-sm text-gray-400 mt-1">
+                <div className="rounded-xl p-12 text-center"
+                    style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                    <Bookmark className="w-10 h-10 mx-auto mb-3" style={{ color: "#334155" }} />
+                    <p className="font-medium" style={{ color: "#64748b" }}>No saved jobs yet</p>
+                    <p className="text-sm mt-1" style={{ color: "#475569" }}>
                         Browse jobs and save the ones you like
                     </p>
                     <Link
                         to="/jobs"
-                        className="inline-flex items-center gap-1.5 mt-4 text-blue-500 hover:text-blue-600 text-sm font-medium transition-colors"
+                        className="inline-flex items-center gap-1.5 mt-4 text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors"
                     >
                         Browse Jobs
                         <ArrowRight className="w-4 h-4" />

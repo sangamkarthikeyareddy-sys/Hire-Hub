@@ -19,12 +19,12 @@ function formatJobType(type) {
 }
 
 const typeColors = {
-    full_time: "bg-green-100 text-green-800",
-    contract: "bg-blue-100 text-blue-800",
-    part_time: "bg-yellow-100 text-yellow-800",
-    freelance: "bg-purple-100 text-purple-800",
-    internship: "bg-pink-100 text-pink-800",
-    other: "bg-gray-100 text-gray-700",
+    full_time: "bg-emerald-500/15 text-emerald-400",
+    contract: "bg-blue-500/15 text-blue-400",
+    part_time: "bg-amber-500/15 text-amber-400",
+    freelance: "bg-violet-500/15 text-violet-400",
+    internship: "bg-pink-500/15 text-pink-400",
+    other: "bg-slate-500/15 text-slate-400",
 };
 
 export default function Admin() {
@@ -98,23 +98,32 @@ export default function Admin() {
         navigate("/login");
     };
 
+    const inputStyle = {
+        background: "rgba(255,255,255,0.06)",
+        border: "1px solid rgba(255,255,255,0.1)",
+        color: "#e2e8f0",
+        caretColor: "#60a5fa",
+    };
+
     return (
         <div className="max-w-7xl mx-auto px-4 py-8">
             {/* Toast */}
             {toast && (
-                <div className="fixed top-20 right-4 z-50 bg-white border border-gray-200 shadow-lg rounded-xl px-5 py-3 flex items-center gap-2 animate-in slide-in-from-right">
-                    <CheckCircle className="w-4 h-4 text-green-500" />
-                    <span className="text-sm font-medium text-gray-700">{toast}</span>
+                <div className="fixed top-20 right-4 z-50 rounded-xl px-5 py-3 flex items-center gap-2"
+                    style={{ background: "#1e293b", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 10px 40px rgba(0,0,0,0.4)" }}>
+                    <CheckCircle className="w-4 h-4 text-emerald-400" />
+                    <span className="text-sm font-medium" style={{ color: "#cbd5e1" }}>{toast}</span>
                 </div>
             )}
 
             <div className="flex items-center justify-between mb-6">
-                <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
+                <h1 className="text-2xl md:text-3xl font-bold text-white">
                     Admin Panel
                 </h1>
                 <button
                     onClick={handleLogout}
-                    className="flex items-center gap-2 border border-gray-200 bg-white hover:bg-gray-50 text-gray-700 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors"
+                    className="flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors"
+                    style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "#94a3b8" }}
                 >
                     <LogOut className="w-4 h-4" />
                     Logout
@@ -125,27 +134,29 @@ export default function Admin() {
                 <ProfileCard />
 
                 {/* Post New Job */}
-                <div className="bg-white border border-gray-100 rounded-xl shadow-sm p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                        <Plus className="w-5 h-5 text-blue-500" />
+                <div className="rounded-xl p-6"
+                    style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                    <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                        <Plus className="w-5 h-5 text-blue-400" />
                         Post New Job
                     </h3>
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                                <label className="text-sm font-medium text-gray-700 mb-1 block">
+                                <label className="text-sm font-medium mb-1 block" style={{ color: "#94a3b8" }}>
                                     Job Title *
                                 </label>
                                 <input
                                     value={form.title}
                                     onChange={(e) => setForm({ ...form, title: e.target.value })}
                                     required
-                                    className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    style={inputStyle}
                                     placeholder="e.g. Senior React Developer"
                                 />
                             </div>
                             <div>
-                                <label className="text-sm font-medium text-gray-700 mb-1 block">
+                                <label className="text-sm font-medium mb-1 block" style={{ color: "#94a3b8" }}>
                                     Company Name *
                                 </label>
                                 <input
@@ -154,12 +165,13 @@ export default function Admin() {
                                         setForm({ ...form, company_name: e.target.value })
                                     }
                                     required
-                                    className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    style={inputStyle}
                                     placeholder="e.g. TechCorp"
                                 />
                             </div>
                             <div>
-                                <label className="text-sm font-medium text-gray-700 mb-1 block">
+                                <label className="text-sm font-medium mb-1 block" style={{ color: "#94a3b8" }}>
                                     Category
                                 </label>
                                 <select
@@ -167,7 +179,8 @@ export default function Admin() {
                                     onChange={(e) =>
                                         setForm({ ...form, category: e.target.value })
                                     }
-                                    className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                                    className="w-full rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    style={inputStyle}
                                 >
                                     <option value="">Select Category</option>
                                     {categories.map((c) => (
@@ -178,7 +191,7 @@ export default function Admin() {
                                 </select>
                             </div>
                             <div>
-                                <label className="text-sm font-medium text-gray-700 mb-1 block">
+                                <label className="text-sm font-medium mb-1 block" style={{ color: "#94a3b8" }}>
                                     Job Type
                                 </label>
                                 <select
@@ -186,7 +199,8 @@ export default function Admin() {
                                     onChange={(e) =>
                                         setForm({ ...form, job_type: e.target.value })
                                     }
-                                    className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                                    className="w-full rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    style={inputStyle}
                                 >
                                     {JOB_TYPES.map((t) => (
                                         <option key={t} value={t}>
@@ -196,7 +210,7 @@ export default function Admin() {
                                 </select>
                             </div>
                             <div>
-                                <label className="text-sm font-medium text-gray-700 mb-1 block">
+                                <label className="text-sm font-medium mb-1 block" style={{ color: "#94a3b8" }}>
                                     Location
                                 </label>
                                 <input
@@ -207,12 +221,13 @@ export default function Admin() {
                                             candidate_required_location: e.target.value,
                                         })
                                     }
-                                    className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    style={inputStyle}
                                     placeholder="e.g. Remote, Worldwide"
                                 />
                             </div>
                             <div>
-                                <label className="text-sm font-medium text-gray-700 mb-1 block">
+                                <label className="text-sm font-medium mb-1 block" style={{ color: "#94a3b8" }}>
                                     Salary (optional)
                                 </label>
                                 <input
@@ -220,13 +235,14 @@ export default function Admin() {
                                     onChange={(e) =>
                                         setForm({ ...form, salary: e.target.value })
                                     }
-                                    className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    style={inputStyle}
                                     placeholder="e.g. $80k - $120k"
                                 />
                             </div>
                         </div>
                         <div>
-                            <label className="text-sm font-medium text-gray-700 mb-1 block">
+                            <label className="text-sm font-medium mb-1 block" style={{ color: "#94a3b8" }}>
                                 Description
                             </label>
                             <textarea
@@ -235,13 +251,15 @@ export default function Admin() {
                                     setForm({ ...form, description: e.target.value })
                                 }
                                 rows={6}
-                                className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                                className="w-full rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                                style={inputStyle}
                                 placeholder="Job description..."
                             />
                         </div>
                         <button
                             type="submit"
-                            className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-5 py-2.5 text-sm font-medium transition-colors"
+                            className="text-white rounded-lg px-5 py-2.5 text-sm font-medium transition-all hover:shadow-lg hover:shadow-blue-500/25"
+                            style={{ background: "linear-gradient(135deg, #3b82f6, #6366f1)" }}
                         >
                             Post Job
                         </button>
@@ -249,37 +267,41 @@ export default function Admin() {
                 </div>
 
                 {/* Manage Jobs */}
-                <div className="bg-white border border-gray-100 rounded-xl shadow-sm overflow-hidden">
-                    <div className="p-6 border-b border-gray-100">
-                        <h3 className="text-lg font-semibold text-gray-900">
+                <div className="rounded-xl overflow-hidden"
+                    style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                    <div className="p-6" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                        <h3 className="text-lg font-semibold text-white">
                             Manage Jobs ({jobs.length})
                         </h3>
                     </div>
 
                     {loading ? (
                         <div className="p-12 flex justify-center">
-                            <div className="w-8 h-8 border-4 border-blue-200 border-t-blue-500 rounded-full animate-spin" />
+                            <div className="w-8 h-8 border-4 border-t-blue-500 rounded-full animate-spin" style={{ borderColor: "rgba(59,130,246,0.2)", borderTopColor: "#3b82f6" }} />
                         </div>
                     ) : (
                         <div className="overflow-x-auto">
                             <table className="w-full text-sm">
                                 <thead>
-                                    <tr className="bg-gray-50 text-gray-500 text-left">
-                                        <th className="px-6 py-3 font-medium">Title</th>
-                                        <th className="px-6 py-3 font-medium">Company</th>
-                                        <th className="px-6 py-3 font-medium">Type</th>
-                                        <th className="px-6 py-3 font-medium">Location</th>
-                                        <th className="px-6 py-3 font-medium">Posted</th>
-                                        <th className="px-6 py-3 font-medium">Actions</th>
+                                    <tr style={{ background: "rgba(255,255,255,0.03)" }}>
+                                        <th className="px-6 py-3 font-medium text-left" style={{ color: "#64748b" }}>Title</th>
+                                        <th className="px-6 py-3 font-medium text-left" style={{ color: "#64748b" }}>Company</th>
+                                        <th className="px-6 py-3 font-medium text-left" style={{ color: "#64748b" }}>Type</th>
+                                        <th className="px-6 py-3 font-medium text-left" style={{ color: "#64748b" }}>Location</th>
+                                        <th className="px-6 py-3 font-medium text-left" style={{ color: "#64748b" }}>Posted</th>
+                                        <th className="px-6 py-3 font-medium text-left" style={{ color: "#64748b" }}>Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody className="divide-y divide-gray-100">
+                                <tbody>
                                     {jobs.slice(0, 20).map((job) => (
-                                        <tr key={job.id} className="hover:bg-gray-50">
-                                            <td className="px-6 py-3 font-medium text-gray-900 max-w-[200px] truncate">
+                                        <tr key={job.id}
+                                            style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}
+                                            onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.02)"}
+                                            onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
+                                            <td className="px-6 py-3 font-medium text-white max-w-[200px] truncate">
                                                 {job.title}
                                             </td>
-                                            <td className="px-6 py-3 text-gray-500">
+                                            <td className="px-6 py-3" style={{ color: "#64748b" }}>
                                                 {job.company_name}
                                             </td>
                                             <td className="px-6 py-3">
@@ -290,10 +312,10 @@ export default function Admin() {
                                                     {formatJobType(job.job_type)}
                                                 </span>
                                             </td>
-                                            <td className="px-6 py-3 text-gray-500 max-w-[150px] truncate">
+                                            <td className="px-6 py-3 max-w-[150px] truncate" style={{ color: "#64748b" }}>
                                                 {job.candidate_required_location || "Remote"}
                                             </td>
-                                            <td className="px-6 py-3 text-gray-400">
+                                            <td className="px-6 py-3" style={{ color: "#475569" }}>
                                                 {job.publication_date
                                                     ? new Date(job.publication_date).toLocaleDateString()
                                                     : "—"}
@@ -301,7 +323,10 @@ export default function Admin() {
                                             <td className="px-6 py-3">
                                                 <button
                                                     onClick={() => handleDelete(job.id)}
-                                                    className="p-1.5 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors"
+                                                    className="p-1.5 rounded-lg transition-colors"
+                                                    style={{ color: "#475569" }}
+                                                    onMouseEnter={e => { e.currentTarget.style.color = "#f87171"; e.currentTarget.style.background = "rgba(239,68,68,0.1)"; }}
+                                                    onMouseLeave={e => { e.currentTarget.style.color = "#475569"; e.currentTarget.style.background = "transparent"; }}
                                                 >
                                                     <Trash2 className="w-4 h-4" />
                                                 </button>

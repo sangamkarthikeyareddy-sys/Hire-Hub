@@ -107,13 +107,50 @@ export function HireHubAuthProvider({ children }) {
         setIsLoggedIn(false);
     };
 
+    const register = async ({ name, email, password, phone, location }) => {
+        // Check if email already exists
+        const exists = users.find((u) => u.email === email);
+        if (exists) {
+            return { success: false, error: "An account with this email already exists" };
+        }
+
+        const initials = name
+            .split(" ")
+            .map((w) => w[0])
+            .join("")
+            .toUpperCase()
+            .slice(0, 2);
+
+        const newUser = {
+            id: `u${Date.now()}`,
+            name,
+            email,
+            password,
+            role: "user",
+            phone: phone || "",
+            location: location || "",
+            avatar: initials,
+            bio: "",
+            joinedDate: new Date().toLocaleDateString("en-US", { month: "long", year: "numeric" }),
+        };
+
+        // Add to local users list so login works after
+        users.push(newUser);
+
+        const token = await createToken(newUser);
+        Cookies.set(COOKIE_NAME, token, COOKIE_OPTIONS);
+        setUser({ ...newUser });
+        setIsLoggedIn(true);
+        return { success: true };
+    };
+
     const updateUser = (updatedFields) => {
         setUser((prev) => ({ ...prev, ...updatedFields }));
     };
 
     return (
         <AuthContext.Provider
-            value={{ user, isLoggedIn, loading, login, logout, updateUser }}
+            value={{ user, isLoggedIn, loading, login, logout, register, updateUser }}
         >
             {children}
         </AuthContext.Provider>

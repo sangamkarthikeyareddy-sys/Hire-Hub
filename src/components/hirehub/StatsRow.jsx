@@ -16,22 +16,22 @@ export default function StatsRow() {
             label: "Total Bookmarks",
             value: bookmarks.length,
             icon: Heart,
-            color: "text-pink-500",
-            bg: "bg-pink-50",
+            color: "#f472b6",
+            bg: "rgba(236,72,153,0.12)",
         },
         {
             label: "Jobs Browsed",
             value: jobsBrowsed,
             icon: Eye,
-            color: "text-blue-500",
-            bg: "bg-blue-50",
+            color: "#60a5fa",
+            bg: "rgba(59,130,246,0.12)",
         },
         {
             label: "Member Since",
             value: user?.joinedDate || "—",
             icon: Calendar,
-            color: "text-emerald-500",
-            bg: "bg-emerald-50",
+            color: "#34d399",
+            bg: "rgba(16,185,129,0.12)",
         },
     ];
 
@@ -40,16 +40,18 @@ export default function StatsRow() {
             {stats.map((stat) => (
                 <div
                     key={stat.label}
-                    className="bg-white border border-gray-100 rounded-xl p-5 flex items-center gap-4"
+                    className="rounded-xl p-5 flex items-center gap-4"
+                    style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
                 >
                     <div
-                        className={`w-11 h-11 rounded-lg ${stat.bg} flex items-center justify-center`}
+                        className="w-11 h-11 rounded-lg flex items-center justify-center"
+                        style={{ background: stat.bg }}
                     >
-                        <stat.icon className={`w-5 h-5 ${stat.color}`} />
+                        <stat.icon className="w-5 h-5" style={{ color: stat.color }} />
                     </div>
                     <div>
-                        <p className="text-sm text-gray-500">{stat.label}</p>
-                        <p className="text-xl font-bold text-gray-900">{stat.value}</p>
+                        <p className="text-sm" style={{ color: "#64748b" }}>{stat.label}</p>
+                        <p className="text-xl font-bold text-white">{stat.value}</p>
                     </div>
                 </div>
             ))}

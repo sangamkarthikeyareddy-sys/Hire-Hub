@@ -23,17 +23,19 @@ export default function FilterBar({
     const hasFilters = search || category !== "all" || jobType !== "all";
 
     return (
-        <div className="bg-white border border-gray-100 rounded-xl shadow-sm p-4 md:p-6 mb-6">
+        <div className="rounded-xl p-4 md:p-6 mb-6"
+            style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", backdropFilter: "blur(12px)" }}>
             <div className="flex flex-col md:flex-row gap-3 md:items-end">
                 <div className="flex-1">
                     <div className="relative">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: "#64748b" }} />
                         <input
                             type="text"
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
                             placeholder="Search by title or company..."
-                            className="w-full border border-gray-200 rounded-lg pl-10 pr-4 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow"
+                            className="w-full rounded-lg pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow"
+                            style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "#e2e8f0", caretColor: "#60a5fa" }}
                         />
                     </div>
                 </div>
@@ -42,7 +44,8 @@ export default function FilterBar({
                     <select
                         value={category}
                         onChange={(e) => setCategory(e.target.value)}
-                        className="border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white min-w-[160px]"
+                        className="rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 min-w-[160px]"
+                        style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "#cbd5e1" }}
                     >
                         <option value="all">All Categories</option>
                         {categories.map((c) => (
@@ -55,7 +58,8 @@ export default function FilterBar({
                     <select
                         value={jobType}
                         onChange={(e) => setJobType(e.target.value)}
-                        className="border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white min-w-[160px]"
+                        className="rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 min-w-[160px]"
+                        style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "#cbd5e1" }}
                     >
                         <option value="all">All Types</option>
                         {jobTypes.map((t) => (
@@ -68,13 +72,16 @@ export default function FilterBar({
             </div>
 
             <div className="mt-3 flex items-center justify-between">
-                <p className="text-sm text-gray-500">
-                    Showing <span className="font-semibold text-gray-700">{jobCount}</span> jobs
+                <p className="text-sm" style={{ color: "#64748b" }}>
+                    Showing <span className="font-semibold" style={{ color: "#cbd5e1" }}>{jobCount}</span> jobs
                 </p>
                 {hasFilters && (
                     <button
                         onClick={onClear}
-                        className="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700 transition-colors"
+                        className="flex items-center gap-1 text-sm transition-colors"
+                        style={{ color: "#64748b" }}
+                        onMouseEnter={e => e.currentTarget.style.color = "#94a3b8"}
+                        onMouseLeave={e => e.currentTarget.style.color = "#64748b"}
                     >
                         <X className="w-3.5 h-3.5" />
                         Clear Filters
