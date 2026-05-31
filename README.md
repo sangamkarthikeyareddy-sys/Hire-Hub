@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div align="center">
 
 # ✨ HireHub
@@ -851,3 +852,7 @@ Have questions or feedback? We'd love to hear from you!
 
 </div>
 
+=======
+# Hire-Hub
+HireHub is a modern, full-stack job portal web application designed to connect professionals with remote career opportunities. Built with a sleek dark-themed UI, it offers a seamless experience for job seekers and employers alike.
+>>>>>>> 543f6d8cd0be3516d08be346d64afe8bb9628adb
