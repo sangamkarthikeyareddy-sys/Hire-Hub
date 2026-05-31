@@ -1,13 +1,30 @@
+// ─── Home.jsx ───────────────────────────────────────────────
+// This is the public landing page that visitors see before logging in.
+// It showcases HireHub's features with a modern, animated design:
+//   - Hero section with search bar and gradient text
+//   - Animated stat counters (jobs, companies, hires, success rate)
+//   - Job categories grid (Software Dev, Design, Marketing, etc.)
+//   - Features section explaining why to choose HireHub
+//   - Testimonials from happy users
+//   - Call-to-action (CTA) banner to encourage sign-ups
+
+// Import React and hooks for state, effects, and refs
 import React, { useState, useEffect, useRef } from "react";
+// Import navigation hook for redirecting after search
 import { useNavigate } from "react-router-dom";
+// Import all icons used across the landing page sections
 import {
     Search, ArrowRight, Briefcase, Globe, Zap, Shield,
     Star, Users, TrendingUp, Heart, Play, ChevronRight,
     Sparkles, Award, Target, Rocket, CheckCircle2, ArrowUpRight
 } from "lucide-react";
+// Import auth hook to check if user is already logged in
 import { useHireHubAuth } from "../context/AuthContext";
 
-/* ─── Animated counter hook ──────────────────────────────── */
+/* ─── useCounter: Animated number counting hook ─────────── */
+// This hook animates a number from 0 to the target value
+// when the element scrolls into view. Uses IntersectionObserver
+// and requestAnimationFrame for smooth 60fps animation.
 function useCounter(target, duration = 2000) {
     const [count, setCount] = useState(0);
     const ref = useRef(null);

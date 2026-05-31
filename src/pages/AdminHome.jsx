@@ -1,5 +1,18 @@
+// ─── AdminHome.jsx ──────────────────────────────────────────
+// This is the admin's personalized home page (shown instead of the public landing page).
+// It displays an analytics dashboard with:
+//   - Welcome banner with admin greeting
+//   - Key metrics (total jobs, active users, applications, approval rate)
+//   - Recent activity feed
+//   - Quick action buttons (Post Job, Manage Users, etc.)
+//   - Performance charts and platform health overview
+// Only visible to users with role "admin" via the SmartHome component in App.jsx.
+
+// Import React and hooks for state, effects, and refs
 import React, { useState, useEffect, useRef } from "react";
+// Import navigation hook for redirecting
 import { useNavigate } from "react-router-dom";
+// Import all icons used across the admin dashboard
 import {
     Shield, Users, Briefcase, TrendingUp, Plus, Settings,
     BarChart3, Activity, Clock, ArrowUpRight, ArrowDownRight,

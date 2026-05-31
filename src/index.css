@@ -5,3 +5,37 @@ body {
   min-width: 320px;
   min-height: 100vh;
 }
+
+/* ─── Dark-themed select dropdowns ─────────────────────────── */
+/* Ensures the dropdown popup matches our dark UI instead of the */
+/* browser's default white background */
+select {
+  background-color: #1e293b;
+  color: #cbd5e1;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2364748b' viewBox='0 0 16 16'%3E%3Cpath d='M4.646 6.354l3 3a.5.5 0 00.708 0l3-3a.5.5 0 00-.708-.708L8 8.293 5.354 5.646a.5.5 0 10-.708.708z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+select option {
+  background-color: #1e293b;
+  color: #cbd5e1;
+  padding: 8px 12px;
+}
+
+select option:hover,
+select option:checked {
+  background-color: #334155;
+  color: #e2e8f0;
+}
+
+select:focus {
+  border-color: rgba(96, 165, 250, 0.5);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}

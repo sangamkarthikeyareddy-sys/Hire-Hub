@@ -1,7 +1,20 @@
+// ─── Admin.jsx ──────────────────────────────────────────────
+// This is the admin panel page where administrators can:
+//   - View all posted jobs in a searchable list
+//   - Post new job listings with a form
+//   - Delete existing job listings
+//   - View their own profile info
+// Only users with role "admin" can access this page (guarded by AdminRoute).
+
+// Import React and hooks for state, effects, and memoization
 import React, { useState, useEffect, useMemo } from "react";
+// Import navigation hook for redirecting after logout
 import { useNavigate } from "react-router-dom";
+// Import auth hook to get user data and logout function
 import { useHireHubAuth } from "../context/AuthContext";
+// Import icons used in the admin panel UI
 import { LogOut, Plus, Trash2, CheckCircle } from "lucide-react";
+// Import ProfileCard to show admin's profile info
 import ProfileCard from "../components/hirehub/ProfileCard";
 
 const JOB_TYPES = [
